@@ -1,17 +1,8 @@
+Code for ''Model Criticism in Latent Space'' by Seth, Murray and Williams [PDF](https://arxiv.org/abs/1711.04674)
+
 Dependencies
 ==========
-GPML 
-GPstuff
-JAGS
-
-BeeData
-BSSLDS
-
-cbrewer
-
-matjags
-
-NIPSGMM
+GPML, GPstuff, JAGS, matjags, cbrewer
 
 Reproduction
 ==========
