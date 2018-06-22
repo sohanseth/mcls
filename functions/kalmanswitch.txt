@@ -1,0 +1,46 @@
+model {
+   Z[1] <- 1 
+   for (k in 1:K) {
+        X[k,1] ~ dnorm(0, 1)         
+   }
+    for (m in 1:M) {
+        Y[m,1] ~ dnorm(B[m,] %*% X[,1], 1)
+    }
+   for (i in 2:N) {
+        Z[i] ~ dcat(p[Z[i-1],])
+        for (k in 1:K) {
+            X[k,i] ~ dnorm(A[Z[i],k,] %*% X[,i-1], tauX[Z[i],k])            
+        }
+        for (m in 1:M) {
+            Y[m,i] ~ dnorm(B[m,] %*% X[,i], tauY[m])
+        }
+    }    
+    for (d in 1:D) {
+        for (k1 in 1:K) {
+            for (k2 in 1:K) {
+                A[d,k1,k2] ~ dnorm(0, tauA)
+            }
+        }
+    }
+    for (m in 1:M) {
+        for (k in 1:K) {
+            B[m,k] ~ dnorm(0, tauB)
+        }
+    }
+    for (d in 1:D) {
+        for (k in 1:K) {
+            tauX[d,k] ~ dgamma(1.0E-3, 1.0E-3)
+        }
+    }
+    for (m in 1:M) {
+        tauY[m] ~ dgamma(1.0E-3, 1.0E-3)
+    }    
+    for (d in 1:D) {
+        p[d,1:D] ~ ddirch(alpha)
+    }
+    for (d in 1:D) {
+        alpha[d] <- 1
+    }
+    tauA ~ dgamma(1.0E-3, 1.0E-3)
+    tauB ~ dgamma(1.0E-3, 1.0E-3)
+}

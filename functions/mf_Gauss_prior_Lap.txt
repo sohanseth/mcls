@@ -1,0 +1,24 @@
+model {
+   for (i in 1:N) {
+        for (j in 1:M) {
+           Y[i,j] ~ dnorm(mu[i,j], tau)
+           mu[i,j] <- U[i,] %*% V[,j] + bV[j]
+        }
+    }
+    for (i in 1:N) {
+        for (j in 1:K) {
+           U[i,j] ~ ddexp(0, Utau)
+        }
+    }
+    for (j in 1:M) {
+        bV[j] ~ dnorm(0, bVtau)
+    }
+    for (i in 1:K) {
+        for (j in 1:M) {
+           V[i,j] ~ dnorm(0, 1)
+        }
+    }
+    bVtau ~ dgamma(1.0E-3, 1.0E-3)    
+    Utau ~ dgamma(1.0E-3, 1.0E-3)    
+    tau ~ dgamma(1.0E-3, 1.0E-3)
+}
