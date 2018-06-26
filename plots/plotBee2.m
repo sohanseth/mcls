@@ -58,36 +58,26 @@ for countSub = 1:4
     switch countSub
         case 1
             data = latInn{6, 1}; V = latInnV(6, 1); P = latInnP(6, 1);
-            XLABEL = '$\tilde{z}_{t}$'; YLABEL = '$\tilde{z}_{t+1}$'; TITLE = 'latent space';
+            XLABEL = '$\tilde{z}_{t}$'; YLABEL = '$\tilde{z}_{t+1}$'; TITLE = 'S = 1, latent space';
         case 2
             data = obsInn{6, 1}; V = obsInnV(6, 1); P = obsInnP(6, 1);
-            XLABEL = '$\tilde{x}_{t}$'; YLABEL = '$\tilde{x}_{t+1}$'; TITLE = 'latent space';
+            XLABEL = '$\tilde{x}_{t}$'; YLABEL = '$\tilde{x}_{t+1}$'; TITLE = 'S = 1, observation space';
         case 3
             data = latInn{6, 2}; V = latInnV(6, 2); P = latInnP(6, 2);
-            XLABEL = '$\tilde{z}_{t}$'; YLABEL = '$\tilde{z}_{t+1}$'; TITLE = 'observation space';
+            XLABEL = '$\tilde{z}_{t}$'; YLABEL = '$\tilde{z}_{t+1}$'; TITLE = 'S = 3, latent space';
         case 4
             data = obsInn{6, 2}; V = obsInnV(6, 2); P = obsInnP(6, 2);
-            XLABEL = '$\tilde{x}_{t}$'; YLABEL = '$\tilde{x}_{t+1}$'; TITLE = 'observation space';
-    end
-    
-    for count = 1:length(xGrid) - 1
-        ids = data(:, 1) > xGrid(count) & data(:, 1) < xGrid(count + 1);
-        m(count) = mean(data(ids, 2));
-        s(count) = std(data(ids, 2));
+            XLABEL = '$\tilde{x}_{t}$'; YLABEL = '$\tilde{x}_{t+1}$'; TITLE = 'S = 3, observation space';
     end
     
     mysubplot(1, 4, countSub, subplotOptions{:}); hold on
+    % IND = randi(length(data), 1000, 1); 
+    plot(data(:, 1), data(:, 2), '.', 'color', [0.95 0.95 0.95])
     
     % Mean
-    plot(xGrid, zeros(1, length(xGrid)), 'r--', 'linewidth', 2)
-    plot((xGrid(1:end-1) + xGrid(2:end))/2, m, 'k', 'linewidth', 2)
+    plot(xGrid, zeros(1, length(xGrid)), 'r--', 'linewidth', 1)
+    plot(xGrid, regress(data(:, 1), data(:, 2)) * xGrid, 'k', 'linewidth', 1)
     
-    % Mean + - Std
-    plot(xGrid, ones(1, length(xGrid)), 'r--', 'linewidth', 2)
-    plot(xGrid, -ones(1, length(xGrid)), 'r--', 'linewidth', 2)
-    
-    plot((xGrid(1:end-1) + xGrid(2:end))/2, m + s, 'k', 'linewidth', 2)
-    plot((xGrid(1:end-1) + xGrid(2:end))/2, m - s, 'k', 'linewidth', 2)
     hold off
     
     axis([-2.5 2.5 -2.5 2.5])
@@ -96,10 +86,14 @@ for countSub = 1:4
     myxylabel(XLABEL, YLABEL, TITLE, 'interpreter', 'latex')
     
     if countSub == 4
-        legend('prior', 'agg. post.', 'location', 'south')
+        h = legend('prior', 'agg. post.', 'location', 'south');
+        set(h, 'edgecolor', 'none', 'location', 'south', 'color', 'none')
     end
-    text(0, 2, sprintf('%0.2e (%0.2e)', V, P), 'horizontalalignment', 'center') 
+    text(0, 2, sprintf('r = %0.2e (p = %0.2e)', V, P), 'horizontalalignment', 'center', 'fontname', 'palatino', 'fontsize', 8) 
 end
 
 filename = '../figures/fig/plotBee2';
-saveImage(filename, 'figHandle', gcf)
+saveImage(filename, 'figHandle', gcf, 'fontsize', 10)
+
+% Correlation in observation innovation for S=1
+regress(obsInn{6, 1}(0*606+(1:606), 1), obsInn{6, 1}(0*606+(1:606), 2));

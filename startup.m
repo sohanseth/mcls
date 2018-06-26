@@ -1,10 +1,10 @@
-DATAPATH = '~/Desktop/localDirectory/mcls/data'; % large data files
+DATAPATH = sprintf('%s/data/', pwd); % large data files
 addpath(DATAPATH)
 
-addpath utilities/
-addpath functions/
-addpath plots/
-addpath data/
+addpath(sprintf('%s/utilities/', pwd))
+addpath(sprintf('%s/functions/', pwd))
+addpath(sprintf('%s/plots/', pwd))
+addpath(sprintf('%s/data/', pwd))
 
 addpath ~/Desktop/localDirectory/matlabToolbox/cbrewer/
 
