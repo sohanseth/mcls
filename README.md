@@ -27,8 +27,8 @@ Section 4.3 - scripts/runCO2.m
 Results
 ---
 
-Results are stored in data/
-Results of our run can be requested from the author.
+Results are stored in data/ as \*.mat files.  
+Results of the run can be asked from the author.
 
 Reproducing figures
 ---
