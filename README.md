@@ -15,6 +15,11 @@ BSDS300     - https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/
 Honey Bee   - https://www.cc.gatech.edu/~borg/ijcv_psslds/
 CO2         - ftp://ftp.cmdl.noaa.gov/ccg/co2/trends/co2_mm_mlo.txt
 
+Datasets should be added to data/ e.g., data/BSDA300/.
+
+Results are stored 
+Results of the run 
+
 Running experiments
 ==========
 

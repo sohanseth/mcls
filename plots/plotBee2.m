@@ -75,8 +75,8 @@ for countSub = 1:4
     plot(data(:, 1), data(:, 2), '.', 'color', [0.95 0.95 0.95])
     
     % Mean
-    plot(xGrid, zeros(1, length(xGrid)), 'r--', 'linewidth', 1)
-    plot(xGrid, regress(data(:, 1), data(:, 2)) * xGrid, 'k', 'linewidth', 1)
+    h1 = plot(xGrid, zeros(1, length(xGrid)), 'r--', 'linewidth', 1);
+    h2 = plot(xGrid, regress(data(:, 1), data(:, 2)) * xGrid, 'k', 'linewidth', 1);
     
     hold off
     
@@ -86,7 +86,7 @@ for countSub = 1:4
     myxylabel(XLABEL, YLABEL, TITLE, 'interpreter', 'latex')
     
     if countSub == 4
-        h = legend('prior', 'agg. post.', 'location', 'south');
+        h = legend([h1 h2], 'prior', 'agg. post.', 'location', 'south');
         set(h, 'edgecolor', 'none', 'location', 'south', 'color', 'none')
     end
     text(0, 2, sprintf('r = %0.2e (p = %0.2e)', V, P), 'horizontalalignment', 'center', 'fontname', 'palatino', 'fontsize', 8) 
