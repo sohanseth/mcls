@@ -24,7 +24,7 @@ Section 4.1 - scripts/runImagePatch.m
 Section 4.2 - scripts/runBee.m  
 Section 4.3 - scripts/runCO2.m  
 
-Result
+Results
 ---
 
 Results are stored in data/
@@ -34,9 +34,9 @@ Reproducing figures
 ---
 Run plots/plotList.m to generate plots presented in the figure.  
 
-Figure 2 - plots/plotImagePatch.m
-Figure 3 - plots/plotImagePatch2.m
-Figure 4 - plots/plotBee.m
-Figure 5 - plots/plotBee2.m
-Figure 6 - plots/plotCO2.m
-Figure 7 - plots/plotList.mls
+Figure 2 - plots/plotImagePatch.m  
+Figure 3 - plots/plotImagePatch2.m  
+Figure 4 - plots/plotBee.m  
+Figure 5 - plots/plotBee2.m  
+Figure 6 - plots/plotCO2.m  
+Figure 7 - plots/plotList.m  
