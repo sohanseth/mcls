@@ -1,4 +1,6 @@
-Code for ''Model Criticism in Latent Space'' by Seth, Murray and Williams [PDF](https://arxiv.org/abs/1711.04674)
+# Code for ''Model Criticism in Latent Space'' by Seth, Murray and Williams [PDF](https://arxiv.org/abs/1711.04674)
+
+<img src="https://github.com/sohanseth/mcls/blob/master/mc.png?raw=true"/>
 
 Dependencies
 ---
